@@ -49,8 +49,8 @@ A clean and simple **Laravel-based Book Management System** for managing books, 
 
 ## 🛠️ Technologies Used
 
-- [Laravel](https://laravel.com/) 10+
+- [Laravel](https://laravel.com/) 12
 - Blade templating engine
 - Tailwind CSS
-- MySQL (or any Laravel-supported DB)
-- PHP 8.1+
+- MySQL
+- PHP 8.2+
