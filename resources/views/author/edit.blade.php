@@ -1,0 +1,77 @@
+@extends('layouts.mainLayout')
+
+@section('title', 'Edit Author - ' . $author->name)
+
+@section('content')
+<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <h1 class="text-3xl font-semibold text-primary mb-6">Edit Author</h1>
+
+  @if ($errors->any())
+    <div class="mb-6 bg-red-50 border border-red-200 text-red-800 p-4 rounded-md">
+      <ul class="list-disc list-inside">
+        @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+  @endif
+
+  <form action="{{ route('authors.update', $author) }}" method="POST" class="bg-white shadow-md rounded-xl p-6 space-y-6">
+    @csrf
+    @method('PUT')
+
+    <div>
+      <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        value="{{ old('name', $author->name) }}"
+        class="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-accent"
+        placeholder="e.g. Jane Austen"
+        required
+      />
+    </div>
+
+    <div>
+      <label for="nationality" class="block text-sm font-medium text-gray-700 mb-1">Nationality</label>
+      <input
+        type="text"
+        name="nationality"
+        id="nationality"
+        value="{{ old('nationality', $author->nationality) }}"
+        class="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-accent"
+        placeholder="e.g. British"
+        required
+      />
+    </div>
+
+    <div>
+      <label for="date_of_birth" class="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
+      <input
+        type="date"
+        name="date_of_birth"
+        id="date_of_birth"
+        value="{{ old('date_of_birth', $author->date_of_birth) }}"
+        class="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-accent"
+        required
+      />
+    </div>
+
+    <div class="flex items-center justify-between pt-4 border-t border-gray-200">
+      <a
+        href="{{ route('authors.show', $author) }}"
+        class="text-sm font-medium text-gray-600 hover:text-primary"
+      >
+        &larr; Back to Author
+      </a>
+      <button
+        type="submit"
+        class="px-6 py-2 bg-accent text-gray-800 font-medium rounded-lg hover:bg-accent/90 transition"
+      >
+        Save Changes
+      </button>
+    </div>
+  </form>
+</div>
+@endsection
